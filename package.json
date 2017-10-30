@@ -1,5 +1,12 @@
 {
   "name": "gicx",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "vue": "^2.5.2",
+    "vue-loader": "^13.3.0",
+    "vue-template-compiler": "^2.5.2"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^2.9.3"
+  }
 }
