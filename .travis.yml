@@ -4,6 +4,7 @@ rvm:
 
 before_script:
   - bundle exec rake webpacker:install
+  - bundle exec yarn
   - bundle exec rake db:create
   - bundle exec rake db:migrate
   - bundle exec webpack
