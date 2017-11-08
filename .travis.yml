@@ -1,13 +1,14 @@
 language: ruby
 rvm:
-  - 2.4.2
-
+- 2.4.2
 before_script:
-  - bundle exec rake webpacker:install
-  - bundle exec yarn
-  - bundle exec rake db:create
-  - bundle exec rake db:migrate
-  - bundle exec webpack
-
+- bundle exec rake webpacker:install
+- bundle exec yarn
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+- bundle exec webpack
 script:
-  - bundle exec rake test
+- bundle exec rake test
+notifications:
+  slack:
+    secure: CLxRgOSID3VvnRX24Sz1+A6axTyj/fHPW0PDa1Ckv1OoIP6GtiEX2B+teoY0J3+FXb7cnbmCMRqq9iGb9iX+7gT87rgZrTsMPw6rYPNAB75MdIc2m8PWN+v9AzRyiO5Y8r9vWPw8JdpurmVwuKwuz0SYiVA+H3SpSDjEWgt2+ftuLWflW+tirAXPW+p9+cpFjFSOa/Xn8IuZuqW25/bH9gvhvqXuEENNdxj5Oa9qgFWf40eR2QcRot0cMgNC1FSnJUdUjx1DThlMPHESqEJQlQK4fnG+HMHxX6xTTZfacjcAUMj204gz2/vN1fE7oVPnlBTLMZcBvJaf9wIqJ1XHQZURKf2xZuwVcFb7pYR5nXsYKo8LUzVEj2caFfq4enbG3xPHsjjUQFpGmawH/xwJRLDd7W/EBGSCtUokNJGMIRU5vcb+VoDPuRjJwOsEj92tIcN1Smaqn/WCmOkgyQbGg8vreX1tkjys8RyTlYewfhKklUg4qAK/wZppqw5Hddh3kH50Vo2ITLo3Uh9YIwS+BZvRZ8CXxBYAQYgSmCB62BNbRUWtOynHZvqDQjbvg6J9JHou4/RPiLu195n5mEGvUps9TNMS9JyXYfDwllo4IoFenn25MZvEysdceMTN4e4EaMvOEyrT4cWLooji8V7qXEwD6utxRIL+0S7k7CRwnj8=
