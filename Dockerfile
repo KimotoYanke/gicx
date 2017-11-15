@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:16.04
 
 RUN apt-get update
 RUN apt-get install -y --force-yes build-essential curl git zlib1g-dev libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev
@@ -21,19 +21,20 @@ RUN apt-get install -y sqlite3 libsqlite3-dev
 
 RUN apt-get install -y software-properties-common
 RUN apt-get update
-RUN add-apt-repository -y ppa:chris-lea/node.js
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise universe" >> /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get install -y nodejs
+# RUN add-apt-repository -y ppa:chris-lea/node.js
+# RUN echo "deb http://archive.ubuntu.com/ubuntu xenial universe" >> /etc/apt/sources.list
+RUN apt-get install -y nodejs npm
+RUN npm i -g n
+RUN n latest
 
-RUN mkdir /root/.ssh/
+# RUN mkdir /root/.ssh/
 
-ADD id_rsa /root/.ssh/id_rsa
+# ADD id_rsa /root/.ssh/id_rsa
 
-RUN touch /root/.ssh/known_hosts
+# RUN touch /root/.ssh/known_hosts
 
 RUN mkdir -p /var/www
-RUN git clone git@github.com:KimotoYanke/gicx.git /var/www/gicx
+RUN git clone https://github.com/KimotoYanke/gicx.git /var/www/gicx
 WORKDIR /var/www/gicx
 
 # railsのセットアップ
