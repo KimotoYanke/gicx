@@ -1,0 +1,108 @@
+Sending build context to Docker daemon  989.2kB
+Step 1/31 : FROM ubuntu:16.04
+ ---> dd6f76d9cc90
+Step 2/31 : RUN apt-get update
+ ---> Using cache
+ ---> 83067ddec624
+Step 3/31 : RUN apt-get install -y --force-yes build-essential curl git zlib1g-dev libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev
+ ---> Using cache
+ ---> 39f6ac725359
+Step 4/31 : RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv
+ ---> Using cache
+ ---> 2acb221d40b4
+Step 5/31 : RUN git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build
+ ---> Using cache
+ ---> 1278ee089bd7
+Step 6/31 : RUN ./root/.rbenv/plugins/ruby-build/install.sh
+ ---> Using cache
+ ---> f38ebc9c3b83
+Step 7/31 : ENV PATH /root/.rbenv/bin:$PATH
+ ---> Using cache
+ ---> f74613986384
+Step 8/31 : RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh
+ ---> Using cache
+ ---> 2a1c8a5e08f6
+Step 9/31 : RUN echo 'eval "$(rbenv init -)"' >> .bashrc
+ ---> Using cache
+ ---> ccb816481232
+Step 10/31 : ENV CONFIGURE_OPTS --disable-install-doc
+ ---> Using cache
+ ---> a455a94e6279
+Step 11/31 : ADD ./ruby-versions.txt /root/ruby-versions.txt
+ ---> Using cache
+ ---> a32fb1723233
+Step 12/31 : RUN xargs -L 1 rbenv install < /root/ruby-versions.txt
+ ---> Using cache
+ ---> e618282f9183
+Step 13/31 : RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc
+ ---> Using cache
+ ---> 5ce8559dc431
+Step 14/31 : RUN bash -l -c 'for v in $(cat /root/ruby-versions.txt); do rbenv global $v; gem install bundler; done'
+ ---> Using cache
+ ---> 358f13fc6f1f
+Step 15/31 : RUN apt-get install -y sqlite3 libsqlite3-dev
+ ---> Using cache
+ ---> bb2973f429f6
+Step 16/31 : RUN apt-get install -y software-properties-common
+ ---> Using cache
+ ---> 9b0df1016a11
+Step 17/31 : RUN apt-get update
+ ---> Using cache
+ ---> 121b8c8e97a0
+Step 18/31 : RUN apt-get install -y nodejs npm
+ ---> Using cache
+ ---> 8501f52c5205
+Step 19/31 : RUN npm i -g n
+ ---> Using cache
+ ---> 7c7cd219c3f6
+Step 20/31 : RUN n latest
+ ---> Using cache
+ ---> a152d0aa3868
+Step 21/31 : RUN mkdir -p /var/www
+ ---> Using cache
+ ---> 3427128ea274
+Step 22/31 : RUN git clone https://github.com/KimotoYanke/gicx.git /var/www/gicx
+ ---> Using cache
+ ---> 2e4736c9f03e
+Step 23/31 : WORKDIR /var/www/gicx
+ ---> Using cache
+ ---> 4f0cd9f1b9c0
+Step 24/31 : RUN apt install tzdata
+ ---> Using cache
+ ---> 133cb1dd2a4f
+Step 25/31 : RUN rm Gemfile.lock
+ ---> Running in bdaf0aed3c9f
+ ---> 19466bd82131
+Removing intermediate container bdaf0aed3c9f
+Step 26/31 : RUN bash -l -c 'bundle install'
+ ---> Running in ac3ca61d4ab0
+[91mmesg: ttyname failed: Inappropriate ioctl for device
+[0mDon't run Bundler as root. Bundler can ask for sudo if it is needed, and
+installing your bundle as root will break this application for all non-root
+users on this machine.
+Fetching https://github.com/rails/webpacker.git
+Fetching gem metadata from https://rubygems.org/.........
+Fetching gem metadata from https://rubygems.org/.
+Resolving dependencies...
+Fetching rake 12.2.1
+Installing rake 12.2.1
+Fetching concurrent-ruby 1.0.5
+Installing concurrent-ruby 1.0.5
+Fetching i18n 0.9.1
+Installing i18n 0.9.1
+Fetching minitest 5.10.3
+Installing minitest 5.10.3
+Fetching thread_safe 0.3.6
+Installing thread_safe 0.3.6
+Fetching tzinfo 1.2.4
+Installing tzinfo 1.2.4
+Fetching activesupport 5.1.4
+Installing activesupport 5.1.4
+Fetching builder 3.2.3
+Installing builder 3.2.3
+Fetching erubi 1.7.0
+Installing erubi 1.7.0
+Fetching mini_portile2 2.3.0
+Installing mini_portile2 2.3.0
+Fetching nokogiri 1.8.1
+Installing nokogiri 1.8.1 with native extensions

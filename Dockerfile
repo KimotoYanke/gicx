@@ -19,6 +19,7 @@ RUN bash -l -c 'for v in $(cat /root/ruby-versions.txt); do rbenv global $v; gem
 
 RUN apt-get install -y sqlite3 libsqlite3-dev
 
+
 RUN apt-get install -y software-properties-common
 RUN apt-get update
 # RUN add-apt-repository -y ppa:chris-lea/node.js
@@ -36,12 +37,16 @@ RUN n latest
 RUN mkdir -p /var/www
 RUN git clone https://github.com/KimotoYanke/gicx.git /var/www/gicx
 WORKDIR /var/www/gicx
-
+RUN apt install tzdata
 # railsのセットアップ
+RUN rm Gemfile.lock
 RUN bash -l -c 'bundle install'
+RUN npm i -g yarn
+RUN bash -l -c 'yarn install'
 RUN bash -l -c 'bundle exec rake db:create; bundle exec rake db:migrate'
-RUN bash -l -c 'yarn'
-RUN bash -l -c 'webpack'
+RUN bash -l -c 'bin/webpack'
+
+ENV PATH $PATH:/root/.rbenv/versions/2.4.2/bin
 
 EXPOSE 3000
 CMD bash
