@@ -1,16 +1,14 @@
 <template lang="pug">
-div
-    gicx-navbar
+b-navbar
+    b-navbar-brand gicx
 </template>
 
 <script>
 export default {
+    name:'gicx-navbar',
     data: function () {
         return {
         }
-    },
-    components: {
-        'gicx-navbar': require('../components/GicxNavbar.vue').default
     }
 }
 </script>

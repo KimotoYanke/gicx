@@ -7,18 +7,22 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './pages/main.vue'
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+Vue.use(BootstrapVue)
 Vue.use(VueRouter)
 const routes = [
-    { path: '/', component: App}
+    { path: '/', component: App }
 ]
 const router = new VueRouter({
     routes
 })
+/* eslint-disable no-unused-vars */
 const app = new Vue({
     router
 }).$mount('#app')
-
 
 // The above code uses Vue without the compiler, which means you cannot
 // use Vue to target elements in your existing html templates. You would
@@ -32,7 +36,6 @@ const app = new Vue({
 //   {{message}}
 //   <app></app>
 // </div>
-
 
 // import Vue from 'vue/dist/vue.esm'
 // import App from './app.vue'
