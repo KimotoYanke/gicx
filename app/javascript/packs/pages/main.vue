@@ -1,6 +1,9 @@
 <template lang="pug">
 div
     gicx-navbar
+    b-container.mt-5
+        task-list
+        task-timeline
 </template>
 
 <script>
@@ -10,7 +13,8 @@ export default {
         }
     },
     components: {
-        'gicx-navbar': require('../components/GicxNavbar.vue').default
+        'gicx-navbar': require('../components/GicxNavbar.vue').default,
+        'task-list': require('../components/TaskList.vue').default
     }
 }
 </script>

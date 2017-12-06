@@ -9,6 +9,7 @@ import VueRouter from 'vue-router'
 import App from './pages/main.vue'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
+import 'bootswatch/dist/materia/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(BootstrapVue)
