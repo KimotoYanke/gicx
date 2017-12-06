@@ -12,10 +12,12 @@ RUN echo 'eval "$(rbenv init -)"' >> .bashrc
 
 ENV CONFIGURE_OPTS --disable-install-doc
 ADD ./ruby-versions.txt /root/ruby-versions.txt
-RUN xargs -L 1 rbenv install < /root/ruby-versions.txt
+RUN rbenv install 2.4.2
+# RUN xargs -L 1 rbenv install < /root/ruby-versions.txt
 
 RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc
-RUN bash -l -c 'for v in $(cat /root/ruby-versions.txt); do rbenv global $v; gem install bundler; done'
+RUN rbenv global 2.4.2
+# RUN bash -l -c 'for v in $(cat /root/ruby-versions.txt); do rbenv global $v; gem install bundler; done'
 
 RUN apt-get install -y sqlite3 libsqlite3-dev
 
@@ -40,6 +42,7 @@ WORKDIR /var/www/gicx
 RUN apt install tzdata
 # railsのセットアップ
 RUN rm Gemfile.lock
+RUN bash -l -c 'gem install bundler'
 RUN bash -l -c 'bundle install'
 RUN npm i -g yarn
 RUN bash -l -c 'yarn install'
@@ -49,4 +52,4 @@ RUN bash -l -c 'bin/webpack'
 ENV PATH $PATH:/root/.rbenv/versions/2.4.2/bin
 
 EXPOSE 3000
-CMD bash
+CMD rails s
