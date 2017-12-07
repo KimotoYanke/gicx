@@ -1,5 +1,8 @@
 module.exports = {
-    'extends': 'standard',
+    'extends': [
+        'standard',
+        'plugin:vue/essential'
+    ],
     'rules': {
         'indent': ['error', 4]
     }
