@@ -3,7 +3,8 @@ div.mt-5
     h3 現在の課題
     ui
         li(v-for="subject of subjects")
-            h4 {{ subject.name }}
+            h4 
+                | {{ subject.name }}
             ul
                 li(v-for="task of subject.tasks")
                     | {{ task.name }}
@@ -40,4 +41,7 @@ export default {
 </script>
 
 <style scoped>
+h4 {
+    display: inline;
+}
 </style>
