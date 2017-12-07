@@ -1,9 +1,9 @@
 <template lang="pug">
 div.mt-5
     h3 現在の課題
-    ui
-        li(v-for="subject of subjects")
-            h4 
+    div
+        .subject(v-for="subject of subjects")
+            h4
                 | {{ subject.name }}
             ul
                 li(v-for="task of subject.tasks")
@@ -12,25 +12,29 @@ div.mt-5
 
 <script>
 export default {
-    name:'task-list',
-    data() {
+    name: 'task-list',
+    data () {
         return {
-            subjects: [ // ここのは仮の
+        }
+    },
+    computed: {
+        subjects () {
+            return [ // ここのは仮の
                 {
-                    name:'国語', 
-                    tasks:[
+                    name: '国語',
+                    tasks: [
                         {
-                            name:'レポート',
-                            until: new Date(2017,7,11)
+                            name: 'レポート',
+                            until: new Date(2017, 7, 10)
                         }
                     ]
                 },
                 {
-                    name:'数学', 
-                    tasks:[
+                    name: '数学',
+                    tasks: [
                         {
-                            name:'レポート',
-                            until: new Date(2017,7,11)
+                            name: 'レポート',
+                            until: new Date(2017, 7, 11)
                         }
                     ]
                 }

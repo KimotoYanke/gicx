@@ -14,7 +14,8 @@ export default {
     },
     components: {
         'gicx-navbar': require('../components/GicxNavbar.vue').default,
-        'task-list': require('../components/TaskList.vue').default
+        'task-list': require('../components/TaskList.vue').default,
+        'task-timeline': require('../components/TaskTimeline.vue').default
     }
 }
 </script>
