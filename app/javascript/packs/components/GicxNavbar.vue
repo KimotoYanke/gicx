@@ -1,14 +1,14 @@
 <template lang="pug">
 b-navbar(type="dark" variant="info" fixed)
-    b-navbar-brand gicx
+    router-link(is="b-navbar-brand" to="/") gicx
     b-navbar-nav.ml-auto
-        b-nav-item(v-if="isLogined") ログイン
-        b-nav-item(v-else) ログアウト
+        router-link(v-if="isLogined" is="b-nav-item" to="/sign_in") サインイン
+        b-nav-item(v-else) サインアウト
 </template>
 
 <script>
 export default {
-    name:'gicx-navbar',
+    name: 'gicx-navbar',
     data: function () {
         return {
             isLogined: true

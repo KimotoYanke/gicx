@@ -69,9 +69,10 @@ export default {
     display: inline-block;
     min-width: 30rem;
 }
+/* 丸の部分 */
 .content-wrapper::before {
     left: calc(7rem - 9rem + 0.3rem / 2);
-    top: calc(50% - 0.5rem + 1px);
+    top: calc(50% - 0.75rem + 1px);
     content: " ";
     width: 1rem;
     height: 1rem;
@@ -84,20 +85,20 @@ export default {
 .content{
     border: 1px solid var(--tl-color);
     padding: 1rem;
-    margin-left: 1rem;
-    border-radius: 1rem;
+    margin-left: 0.2rem;
+    border-radius: 0.5rem;
 }
 /* 吹き出しの<の部分 */
 .content::before {
     content: " ";
     height: 0;
     position: absolute;
-    top: calc(50% - 1rem);
+    top: calc(50% - 0.5rem);
     width: 0;
     z-index: 1;
     left: 0;
-    width: 2rem;
-    height: 2rem;
+    width: 0.5rem;
+    height: 0.5rem;
     border-top: 1px solid var(--tl-color);
     border-right: 1px solid var(--tl-color);
     background-color: white;

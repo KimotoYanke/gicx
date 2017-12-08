@@ -6,23 +6,22 @@
 
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import App from './pages/main.vue'
+import VueCookie from 'vue-cookie'
+import router from './router'
+import store from './store'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootswatch/dist/materia/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(BootstrapVue)
 Vue.use(VueRouter)
-const routes = [
-    { path: '/', component: App }
-]
-const router = new VueRouter({
-    routes
-})
+Vue.use(VueCookie)
+
 /* eslint-disable no-unused-vars */
 const app = new Vue({
-    router
+    router,
+    store
 }).$mount('#app')
 
 // The above code uses Vue without the compiler, which means you cannot

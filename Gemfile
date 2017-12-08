@@ -55,3 +55,5 @@ end
 
 
 gem 'devise'
+gem 'devise_token_auth'
+gem 'omniauth'
