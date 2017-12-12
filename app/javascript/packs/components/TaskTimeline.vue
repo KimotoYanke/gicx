@@ -67,7 +67,7 @@ export default {
     top: 0px;
     position: relative;
     display: inline-block;
-    min-width: 30rem;
+    min-width: 50%;
 }
 /* 丸の部分 */
 .content-wrapper::before {
@@ -85,7 +85,7 @@ export default {
 .content{
     border: 1px solid var(--tl-color);
     padding: 1rem;
-    margin-left: 0.2rem;
+    margin-left: calc(0.2rem + 0.5px);
     border-radius: 0.5rem;
 }
 /* 吹き出しの<の部分 */

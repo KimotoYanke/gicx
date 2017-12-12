@@ -1,5 +1,6 @@
 export default {
     accessToken: '',
     client: '',
-    uid: ''
+    uid: '',
+    isLogined: false
 }
