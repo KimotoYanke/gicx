@@ -47,7 +47,7 @@ DeviseTokenAuth.setup do |config|
   # config.enable_standard_devise_support = false
   config.change_headers_on_each_request = false
   config.token_lifespan = 1.month
-
+  config.default_callbacks = false
   config.headers_names = {:'access-token' => 'access-token',
                           :'client' => 'client',
                           :'expiry' => 'expiry',

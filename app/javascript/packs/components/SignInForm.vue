@@ -3,7 +3,7 @@ div.mt-5
     h3 サインイン
     b-form(@submit="signIn")
         b-form-group(label="Email" description="学籍番号")
-            b-form-input(type="number" v-model="sid" required)
+            b-form-input(type="number" v-model="uid" required)
         b-form-group(label="パスワード")
             b-form-input(type="password" v-model="password" required)
         b-button(type="submit") 送信
@@ -15,14 +15,14 @@ export default {
     name: 'sign-in-form',
     data () {
         return {
-            id: '',
+            uid: '',
             password: ''
         }
     },
     methods: {
         signIn () {
             this.axiosInstance.post('/auth/sign_in', {
-                sid: this.sid,
+                uid: this.uid,
                 password: this.password
             }).then(res => {
                 if (res.status === 401) {
