@@ -59,7 +59,7 @@ export default {
     position: relative;
 }
 .date {
-    top: calc(50% - 0.5rem);
+    top: calc(50% - 0.775rem);
     position: absolute;
 }
 .content-wrapper {
