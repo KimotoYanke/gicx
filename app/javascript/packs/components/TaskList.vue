@@ -7,7 +7,7 @@ div.mt-5
                 | {{ subject.name }}
             ul
                 li(v-for="task of subject.tasks")
-                    | {{ task.name }}
+                    router-link(:to='"task/"+task.id') {{ task.name }}
 </template>
 
 <script>
@@ -24,6 +24,7 @@ export default {
                     name: '国語',
                     tasks: [
                         {
+                            id: 'a',
                             name: 'レポート',
                             until: new Date(2017, 7, 10)
                         }
@@ -33,6 +34,7 @@ export default {
                     name: '数学',
                     tasks: [
                         {
+                            id: 'b',
                             name: 'レポート',
                             until: new Date(2017, 7, 11)
                         }
