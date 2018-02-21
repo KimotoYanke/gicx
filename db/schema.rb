@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221121733) do
+ActiveRecord::Schema.define(version: 20180221132107) do
 
   create_table "homerooms", force: :cascade do |t|
     t.integer "grade"
@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 20180221121733) do
     t.datetime "updated_at", null: false
     t.integer "homeroom_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["homeroom_id"], name: "index_users_on_homeroom_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
     t.index ["uid"], name: "index_users_on_uid", unique: true

@@ -13,5 +13,8 @@ class User < ApplicationRecord
   def will_save_change_to_email?
     false
   end
-  belongs_to :homeroom
+
+  def homeroom
+    Homeroom.find(:first, :id => this.homeroom_id)
+  end
 end
