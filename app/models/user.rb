@@ -13,4 +13,5 @@ class User < ApplicationRecord
   def will_save_change_to_email?
     false
   end
+  belongs_to :homeroom
 end
