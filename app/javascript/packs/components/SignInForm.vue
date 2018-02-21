@@ -2,7 +2,7 @@
 div.mt-5
     h3 サインイン
     b-form(@submit="signIn")
-        b-form-group(label="Email" description="学籍番号")
+        b-form-group(label="学籍番号")
             b-form-input(type="number" v-model="uid" required)
         b-form-group(label="パスワード")
             b-form-input(type="password" v-model="password" required)
