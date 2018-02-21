@@ -6,7 +6,7 @@ b-navbar.justify-content-start(type="dark" variant="info" fixed toggleable="md")
         b-navbar-nav
         b-navbar-nav.ml-auto
             template(v-if="isLogined" )
-                b-nav-item {{ uid }}
+                b-nav-item {{ grade }}{{ department }}
                 b-nav-item(@click="signOut") サインアウト
             router-link(v-else is="b-nav-item" to="/sign_in") サインイン
 </template>
@@ -31,7 +31,8 @@ export default {
     computed: {
         ...mapState('user', {
             isLogined: state => state.success,
-            uid: state => state.uid
+            grade: state => state.grade,
+            department: state => state.department
         })
     }
 

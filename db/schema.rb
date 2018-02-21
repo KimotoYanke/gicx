@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 20180221132107) do
 
   create_table "homerooms", force: :cascade do |t|
     t.integer "grade"
-    t.string "depertment"
+    t.string "department"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

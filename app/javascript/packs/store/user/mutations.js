@@ -12,9 +12,16 @@ function resetToken (state) {
     })
 }
 
+function setHomeroom (state, {id, grade, department}) {
+    state.homeroomId = id
+    state.grade = grade
+    state.department = department
+}
+
 export default {
     setToken,
     resetToken,
+    setHomeroom,
     setSuccess (state, success) {
         state.success = success
         if (!success) {

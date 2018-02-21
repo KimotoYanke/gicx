@@ -7,12 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 for d in 1...5
-    homeroom = Homeroom.create(grade: 1, depertment: d)
+    homeroom = Homeroom.create(grade: 1, department: d)
     homeroom.subjects.create(name: '国語 I', homeroom_id: 1)
 end
 for g in 2...5
     for d in ['M', 'E', 'D', 'J', 'C']
-        Homeroom.create(grade:g, depertment:d)
+        Homeroom.create(grade:g, department:d)
     end
 end
 
