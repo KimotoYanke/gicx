@@ -18,14 +18,21 @@ function setHomeroom (state, {id, grade, department}) {
     state.department = department
 }
 
+function setSuccess (state, success) {
+    state.success = success
+    if (!success) {
+        resetToken(state)
+    }
+}
+
+function setSubjects (state, subjects) {
+    state.subjects = subjects
+}
+
 export default {
     setToken,
     resetToken,
     setHomeroom,
-    setSuccess (state, success) {
-        state.success = success
-        if (!success) {
-            resetToken(state)
-        }
-    }
+    setSuccess,
+    setSubjects
 }

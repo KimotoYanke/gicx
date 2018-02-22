@@ -5,5 +5,7 @@ export default {
     grade: 0,
     department: '',
     homeroomId: 0,
+
+    subjects: [],
     isLogined: false
 }
