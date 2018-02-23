@@ -11,6 +11,7 @@ div.mt-5
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
     name: 'task-list',
     data () {
@@ -18,30 +19,9 @@ export default {
         }
     },
     computed: {
-        subjects () {
-            return [ // ここのは仮の
-                {
-                    name: '国語',
-                    tasks: [
-                        {
-                            id: 'a',
-                            name: 'レポート',
-                            until: new Date(2017, 7, 10)
-                        }
-                    ]
-                },
-                {
-                    name: '数学',
-                    tasks: [
-                        {
-                            id: 'b',
-                            name: 'レポート',
-                            until: new Date(2017, 7, 11)
-                        }
-                    ]
-                }
-            ]
-        }
+        ...mapState('user', [
+            'subjects'
+        ])
     }
 }
 </script>
