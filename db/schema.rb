@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20180221132107) do
     t.string "name"
     t.datetime "until"
     t.integer "subject_id"
+    t.text "users"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["subject_id"], name: "index_tasks_on_subject_id"
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(version: 20180221132107) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "homeroom_id"
+    t.text "subjects"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true

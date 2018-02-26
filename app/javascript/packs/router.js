@@ -4,11 +4,11 @@ import SignIn from './pages/sign-in.vue'
 import Task from './pages/task.vue'
 
 const routes = [
-    { path: '/', component: App },
-    { path: '/sign_in', component: SignIn },
-    { path: '/task/:id', component: Task }
+  { path: '/', component: App },
+  { path: '/sign_in', component: SignIn },
+  { path: '/task/:subject/:task', component: Task }
 ]
 
 export default new VueRouter({
-    routes
+  routes
 })

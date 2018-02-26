@@ -17,4 +17,6 @@ class User < ApplicationRecord
   def homeroom
     Homeroom.find(:first, :id => this.homeroom_id)
   end
+
+  serialize :subjects
 end

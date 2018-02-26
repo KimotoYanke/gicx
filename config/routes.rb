@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :subject
   resources :homeroom
   resources :task
+  resources :submission
   get 'home/index'
 
   root to: 'home#index'

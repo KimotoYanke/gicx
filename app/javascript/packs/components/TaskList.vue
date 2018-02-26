@@ -7,7 +7,7 @@ div.mt-5
                 | {{ subject.name }}
             ul
                 li(v-for="task of subject.tasks")
-                    router-link(:to='"task/"+task.id') {{ task.name }}
+                    router-link(:to='"task/"+subject.id+"/"+task.id') {{ task.name }}
 </template>
 
 <script>

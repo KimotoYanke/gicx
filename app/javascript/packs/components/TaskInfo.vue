@@ -3,14 +3,14 @@ div.mt-1
     h2 {{ remaining }}
     dl
         dt 教科
-        dd {{ task.subject }}
+        dd {{ subjectName }}
         dt 期限
         dd {{ localUntil }}
 </template>
 
 <script>
 import jaLocale from 'date-fns/locale/ja'
-import { format, isPast } from 'date-fns'
+import { format, isPast, parse } from 'date-fns'
 const formatJapanese = d => format(d, 'MM/DD(dd) HH:mm:ss', {locale: jaLocale})
 const formatJapaneseDuration = d => format(d, 'DDD日HH時間mm分ss.SSS秒', {locale: jaLocale})
 
@@ -22,7 +22,8 @@ export default {
         }
     },
     props: {
-        task: Object
+        task: Object,
+        subjectName: String
     },
     mounted () {
         const loop = () => {
@@ -37,9 +38,9 @@ export default {
         },
         remaining () {
             if (isPast(this.task.until)) {
-                return `締切より${formatJapaneseDuration(this.now - this.task.until)}経過`
+                return `締切より${formatJapaneseDuration(this.now - parse(this.task.until))}経過`
             } else {
-                return `あと${formatJapaneseDuration(this.now - this.task.until)}`
+                return `あと${formatJapaneseDuration(this.now - parse(this.task.until))}`
             }
         }
     }
