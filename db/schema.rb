@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221132107) do
+ActiveRecord::Schema.define(version: 20180226160542) do
 
   create_table "homerooms", force: :cascade do |t|
     t.integer "grade"
@@ -25,6 +25,19 @@ ActiveRecord::Schema.define(version: 20180221132107) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["homeroom_id"], name: "index_subjects_on_homeroom_id"
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.string "name"
+    t.string "path"
+    t.integer "task_id"
+    t.integer "user_id"
+    t.boolean "is_confirming"
+    t.boolean "is_passed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_submissions_on_task_id"
+    t.index ["user_id"], name: "index_submissions_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
