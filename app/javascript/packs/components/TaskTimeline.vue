@@ -18,11 +18,10 @@ export default {
         ...mapGetters('user', [
             'tasks'
         ]),
-        sortedTasks () {
-            return this.tasks.sort((a, b) =>
-                a.until - b.until
-            )
-        }
+        sortedTasks: () => 
+            this.tasks.sort((a, b) => a.until - b.until
+        )
+
     }
 }
 </script>
