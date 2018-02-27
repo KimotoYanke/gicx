@@ -19,7 +19,8 @@ for g in 2...5
 end
 
 Subject.all.each{|s|
-    s.tasks.create(name: 'レポート', until: DateTime.parse('2020-01-01 12:00:00'))
+    s.tasks.create(name: 'レポート1', until: DateTime.parse('2020-01-01 12:00:00'))
+    s.tasks.create(name: 'レポート2', until: DateTime.parse('2020-01-02 12:00:00'))
 }
 
 User.create(provider: 'email', uid: '15058', password: 'aaaaaaaa', homeroom_id: 13)

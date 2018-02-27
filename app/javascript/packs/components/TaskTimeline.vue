@@ -11,23 +11,17 @@ div.mt-5
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
     name: 'timeline',
     computed: {
+        ...mapGetters('user', [
+            'tasks'
+        ]),
         sortedTasks () {
-            return [ // ここのは仮の
-                {
-                    subject: '国語',
-                    name: 'レポート',
-                    until: new Date(2017, 7, 10)
-                },
-                {
-                    subject: '数学',
-                    name: 'レポート',
-                    until: new Date(2017, 7, 11)
-                }
-
-            ]
+            return this.tasks.sort((a, b) =>
+                a.until - b.until
+            )
         }
     }
 }

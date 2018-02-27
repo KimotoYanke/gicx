@@ -1,3 +1,4 @@
+import { parse } from 'date-fns'
 function setToken (state, {accessToken, client, uid}) {
     state.accessToken = accessToken
     state.client = client
@@ -26,7 +27,13 @@ function setSuccess (state, success) {
 }
 
 function setSubjects (state, subjects) {
-    state.subjects = subjects
+    state.subjects = subjects.map(s => {
+        s.tasks = s.tasks.map(t => {
+            t.until = parse(t.until)
+            return t
+        })
+        return s
+    })
 }
 
 export default {
