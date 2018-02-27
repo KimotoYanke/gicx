@@ -2,8 +2,8 @@
 
 one:
   grade: 1
-  depertment: MyString
+  department: MyString
 
 two:
   grade: 1
-  depertment: MyString
+  department: MyString
