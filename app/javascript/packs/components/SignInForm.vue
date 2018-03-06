@@ -21,6 +21,7 @@ export default {
     },
     methods: {
         signIn () {
+            this.$store.commit('user/resetAll')
             this.axiosInstance.post('/auth/sign_in', {
                 uid: this.uid,
                 password: this.password

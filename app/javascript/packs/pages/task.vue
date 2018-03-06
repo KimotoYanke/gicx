@@ -4,7 +4,8 @@ div
     b-container.mt-5
         h1 {{ task.name }}
         h4 {{ subjectName }}
-        task-info(:task='task', :subject-name='subjectName')
+        task-info(:task='task', :subject-name='subjectName' v-if='grade!=0')
+        submission-list(:task='task', :subject-name='subjectName' v-if='grade==0')
 </template>
 
 <script>
@@ -16,7 +17,9 @@ export default {
     },
     components: {
         'gicx-navbar': require('../components/GicxNavbar.vue').default,
-        'task-info': require('../components/TaskInfo.vue').default
+        'task-info': require('../components/TaskInfo.vue').default,
+        'submission-list': require('../components/SubmissionList.vue').default
+
     },
     computed: {
         subjectId () {
@@ -38,7 +41,8 @@ export default {
             })
         },
         ...mapState('user', [
-            'subjects'
+            'subjects',
+            'grade'
         ])
     }
 }

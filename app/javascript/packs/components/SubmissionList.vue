@@ -6,8 +6,8 @@ div.mt-1
         dd {{ subjectName }}
         dt 期限
         dd {{ localUntil }}
-    b-file(type="file" v-model="file" ref="file")
-    b-btn(@click="submit") 提出
+    li
+        ul(v-for="s of submissions[task.id]") {{ s.user_id }}
 </template>
 
 <script>
@@ -18,7 +18,7 @@ const formatJapanese = d => format(d, 'MM/DD(dd) HH:mm:ss', {locale: jaLocale})
 const formatJapaneseDuration = d => format(d, 'DDD日HH時間mm分ss.SSS秒', {locale: jaLocale})
 
 export default {
-    name: 'task-info',
+    name: 'submission-list',
     data () {
         return {
             now: new Date(), // Vuejsの再描画イベントを起こすためnowはdata化
@@ -51,32 +51,10 @@ export default {
             'axiosInstance'
         ]),
         ...mapState('user', [
-            'uid'
+            'submissions'
         ])
     },
     methods: {
-        submit () {
-            const readAsBase64 = file => {
-                const r = new FileReader()
-                return new Promise((resolve, reject) => {
-                    r.onloadend = () => {
-                        resolve(r.result.split(',')[1])
-                    }
-                    r.onerror = err => {
-                        reject(err)
-                    }
-                    r.readAsDataURL(file)
-                })
-            }
-            readAsBase64(this.file).then(d => {
-                this.axiosInstance.post('/submission/', {
-                    'decoded_file': d,
-                    subject: this.task.subject_id,
-                    task: this.task.id,
-                    user: this.uid
-                }).catch(err => console.log(err))
-            })
-        }
     }
 }
 </script>
@@ -90,3 +68,4 @@ dd {
     margin-left: 2rem;
 }
 </style>
+

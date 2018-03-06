@@ -6,7 +6,7 @@ div.mt-5
             .date {{ task.until.toLocaleString('ja-JP') }}
             .content-wrapper
                 .content
-                    h4 {{ task.subject }}
+                    h4 {{ task.homeroom.grade }} - {{ task.homeroom.department }} {{ task.subject }} 
                     h5 {{ task.name }}
 </template>
 

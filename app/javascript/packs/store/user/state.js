@@ -7,5 +7,6 @@ export default {
     homeroomId: 0,
 
     subjects: [],
+    submissions: [],
     isLogined: false
 }

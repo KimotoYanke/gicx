@@ -1,18 +1,17 @@
 require 'fileutils' 
 class SubmissionController < ApplicationController
   def index
-    @submissions = Submission.all
+    if !params[:task_id].nil?
+      @submissions = Submission.where(task_id: params[:task_id])
+    else
+      @submissions = Submission.all
+    end
     render json: @submissions
   end
 
   def create
     decoded_file = params[:decoded_file]
-    path ='/tmp/gicx/' +
-               params[:subject] +
-               '/' +
-               params[:task] +
-               '/' +
-               params[:user]
+    path ='/tmp/gicx/' + params[:subject].to_s + '/' + params[:task].to_s + '/' + params[:user].to_s
     filename = path + '/' + DateTime.now.to_s
     FileUtils.mkdir_p(path)
 

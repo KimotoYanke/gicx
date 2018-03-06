@@ -5,8 +5,8 @@ b-navbar.justify-content-start(type="dark" variant="info" fixed toggleable="md")
     b-collapse(is-nav id="navbar-collapse")
         b-navbar-nav
         b-navbar-nav.ml-auto
-            template(v-if="isLogined" )
-                b-nav-item {{ grade }}{{ department }}
+            template(v-if="isLogined")
+                b-nav-item {{ grade || '' }}{{ grade ? '-' : '' }}{{ department }}
                 b-nav-item(@click="signOut") サインアウト
             router-link(v-else is="b-nav-item" to="/sign_in") サインイン
 </template>

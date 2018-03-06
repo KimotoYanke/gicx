@@ -3,6 +3,8 @@ div.mt-5
     h3 現在の課題
     div
         .subject(v-for="subject of subjects")
+            h5
+                | {{ subject.homeroom.grade }} - {{ subject.homeroom.department }}
             h4
                 | {{ subject.name }}
             ul

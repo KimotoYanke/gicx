@@ -24,3 +24,4 @@ Subject.all.each{|s|
 }
 
 User.create(provider: 'email', uid: '15058', password: 'aaaaaaaa', homeroom_id: 13)
+User.create(provider: 'email', uid: '1', password: 'aaaaaaaa', homeroom_id: 0, subjects: [1,2,3,4,5,13])
