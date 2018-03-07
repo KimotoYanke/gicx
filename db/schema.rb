@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20180226160542) do
     t.string "path"
     t.integer "task_id"
     t.integer "user_id"
+    t.string "uid"
     t.boolean "is_confirming"
     t.boolean "is_passed"
     t.datetime "created_at", null: false
@@ -70,6 +71,7 @@ ActiveRecord::Schema.define(version: 20180226160542) do
     t.string "nickname"
     t.string "image"
     t.string "email"
+    t.integer "number_in_class"
     t.text "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

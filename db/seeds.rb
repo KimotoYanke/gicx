@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-for d in 1...5
+for d in 1...6
     homeroom = Homeroom.create(grade: 1, department: d)
     homeroom.subjects.create(name: '国語 I')
 end
@@ -23,5 +23,5 @@ Subject.all.each{|s|
     s.tasks.create(name: 'レポート2', until: DateTime.parse('2020-01-02 12:00:00'))
 }
 
-User.create(provider: 'email', uid: '15058', password: 'aaaaaaaa', homeroom_id: 13)
-User.create(provider: 'email', uid: '1', password: 'aaaaaaaa', homeroom_id: 0, subjects: [1,2,3,4,5,13])
+User.create(provider: 'email', uid: '15058', password: 'aaaaaaaa', homeroom_id: 14, number_in_class: 11)
+User.create(provider: 'email', uid: '1', password: 'aaaaaaaa', homeroom_id: 0, subjects: [1,2,3,4,5,14])

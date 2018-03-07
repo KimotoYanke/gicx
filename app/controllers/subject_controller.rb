@@ -13,7 +13,19 @@ class SubjectController < ApplicationController
     @ns=[]
     @subjects.each_with_index {|s, k|
       @ns[k] = s.attributes
-      @ns[k]['tasks'] = s.tasks
+      @nt=[]
+      s.tasks.each_with_index{|t, k2|
+        @nt[k2] = t.attributes
+        @nsm=[]
+        Submission.where(task_id: t.id).each_with_index{|s2, k3|
+            @nsm[k3] = s2.attributes
+
+            p s2.attributes
+            @nsm[k3]['user'] = s2.user
+        }
+        @nt[k2]['submissions'] = @nsm
+      }
+      @ns[k]['tasks'] = @nt
       @ns[k]['homeroom'] = s.homeroom
     }
     render json: @ns

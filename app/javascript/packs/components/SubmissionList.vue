@@ -6,8 +6,16 @@ div.mt-1
         dd {{ subjectName }}
         dt 期限
         dd {{ localUntil }}
-    li
-        ul(v-for="s of submissions[task.id]") {{ s.user_id }}
+    ul
+        li(v-for="s of submissions[task.id]")
+            div: h2 {{ s.user.number_in_class }}
+            div
+                h2(v-if="s.is_confirming") 提出済
+                h2(v-else) 未提出
+            div
+                h2(v-if="s.is_passed") 合格
+                h2(v-else) 未採点
+
 </template>
 
 <script>
@@ -66,6 +74,9 @@ dt {
 dd {
     font-size: 16px;
     margin-left: 2rem;
+}
+ul {
+    list-style-type: none;
 }
 </style>
 

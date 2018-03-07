@@ -6,6 +6,8 @@ div.mt-1
         dd {{ subjectName }}
         dt 期限
         dd {{ localUntil }}
+    ul
+        li(v-for="s in mySubmissions") {{ formatJapaneseFromString(s.created_at) }} に提出しています
     b-file(type="file" v-model="file" ref="file")
     b-btn(@click="submit") 提出
 </template>
@@ -13,8 +15,9 @@ div.mt-1
 <script>
 import {mapGetters, mapState} from 'vuex'
 import jaLocale from 'date-fns/locale/ja'
-import { format, isPast } from 'date-fns'
+import { format, isPast, parse } from 'date-fns'
 const formatJapanese = d => format(d, 'MM/DD(dd) HH:mm:ss', {locale: jaLocale})
+const formatJapaneseFromString = d => formatJapanese(parse(d))
 const formatJapaneseDuration = d => format(d, 'DDD日HH時間mm分ss.SSS秒', {locale: jaLocale})
 
 export default {
@@ -47,6 +50,11 @@ export default {
                 return `あと${formatJapaneseDuration(this.now - this.task.until)}`
             }
         },
+        mySubmissions () {
+            return this.task.submissions.filter(s => 
+                s.uid === this.uid
+            )
+        },
         ...mapGetters([
             'axiosInstance'
         ]),
@@ -69,14 +77,19 @@ export default {
                 })
             }
             readAsBase64(this.file).then(d => {
-                this.axiosInstance.post('/submission/', {
+                return this.axiosInstance.post('/submission/', {
                     'decoded_file': d,
                     subject: this.task.subject_id,
                     task: this.task.id,
                     user: this.uid
                 }).catch(err => console.log(err))
+            }).then(() => {
+                this.$store.dispatch('user/getSubjects')
+                this.file = null
             })
-        }
+
+        },
+        formatJapaneseFromString
     }
 }
 </script>

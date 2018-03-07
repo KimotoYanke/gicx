@@ -29,7 +29,7 @@ export default {
     },
     getSubmissions ({ commit, dispatch, rootGetters, state }, id) {
         rootGetters.axiosInstance.get('/submission?task_id=' + id).then(res => {
-            commit('setSubmissions', {submissions:res.data, taskId: id})
+            commit('setSubmissions', {submissions: res.data, taskId: id})
         })
     },
     getSubjects ({ commit, dispatch, rootState, rootGetters }) {
