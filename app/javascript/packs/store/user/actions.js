@@ -29,7 +29,7 @@ export default {
     },
     getSubmissions ({ commit, dispatch, rootGetters, state }, id) {
         rootGetters.axiosInstance.get('/submission?task_id=' + id).then(res => {
-            commit('setSubmissions', {submissions: res.data, taskId: id})
+            commit('setSubmissions', { submissions: res.data, taskId: id })
         })
     },
     getSubjects ({ commit, dispatch, rootState, rootGetters }) {
@@ -41,16 +41,20 @@ export default {
                 dispatch('getTasks')
             })
     },
-    getSubjectsForTeachers ({ commit, dispatch, rootState, rootGetters, getters }) {
+    getSubjectsForTeachers ({
+        commit,
+        dispatch,
+        rootState,
+        rootGetters,
+        getters
+    }) {
         const uid = rootState.user.uid
-        rootGetters.axiosInstance
-            .get(`/subject?teacher=${uid}`)
-            .then(res => {
-                commit('setSubjects', res.data)
-                for(let t of getters.tasks){
-                    dispatch('getSubmissions', t.id)
-                }
-            })
+        rootGetters.axiosInstance.get(`/subject?teacher=${uid}`).then(res => {
+            commit('setSubjects', res.data)
+            for (let t of getters.tasks) {
+                dispatch('getSubmissions', t.id)
+            }
+        })
     },
     getTasks ({ commit, state, rootState, rootGetters }) {}
 }

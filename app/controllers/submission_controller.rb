@@ -17,24 +17,33 @@ class SubmissionController < ApplicationController
   def create
     decoded_file = params[:decoded_file]
     path ='/tmp/gicx/' + params[:subject].to_s + '/' + params[:task].to_s + '/' + params[:user].to_s
-    filename = path + '/' + DateTime.now.to_s
+    filename = params[:filename] || DateTime.now.to_s
+    filepath = path + '/' + filename
     FileUtils.mkdir_p(path)
     if !File.directory? path + '/.git'
       system 'cd ' + path + '; git init'
     end
 
-    File.open(filename, 'w+b') do |fp|
+    File.open(filepath, 'w+b') do |fp|
       fp.write Base64.decode64(decoded_file)
     end
-    system 'cd ' + path + ';git add ' + filename + '; git commit -m "' + filename + '"'
+    system 'cd ' + path + ';git add ' + filepath + '; git commit -m "' + filepath + '"'
     @submission = Submission.create(
       :is_confirming=>true,
-      :is_passed=>false, 
+      :is_passed=>nil, 
       :user=>User.where(uid:params[:user]).first,
       :uid=>params[:user],
-      :path=>filename,
+      :path=>filepath,
       :task=>Task.find(params[:task]))
     render json: @submission
+  end
+
+  def pass
+    @sid = params[:submission_id]
+    @is_passed = params[:is_passed]
+    p @sid
+    Submission.update(@sid, is_passed: @is_passed)
+    render json: {}
   end
 
 end

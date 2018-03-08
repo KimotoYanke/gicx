@@ -13,8 +13,16 @@ div.mt-1
                 h2(v-if="s.is_confirming") 提出済
                 h2(v-else) 未提出
             div
-                h2(v-if="s.is_passed") 合格
-                h2(v-else) 未採点
+                template(v-if="s.is_passed == true")
+                    h4 合格
+                    b-btn(@click="submit(s, false)") 不合格
+                template(v-if="s.is_passed == false")
+                    h4 不合格
+                    b-btn(@click="submit(s, true)") 合格
+                template(v-if="s.is_passed == null")
+                    h4 未採点
+                    b-btn(@click="submit(s, true)") 合格
+                    b-btn(@click="submit(s, false)") 不合格
 
 </template>
 
@@ -63,6 +71,16 @@ export default {
         ])
     },
     methods: {
+        submit (submission, isPassed) {
+            this.axiosInstance.get('/submission/pass', {
+                params: {
+                    submission_id: submission.id,
+                    is_passed: isPassed
+                }
+            }).then(() => {
+                this.$store.dispatch('user/getSubjectsForTeachers')
+            })
+        }
     }
 }
 </script>
@@ -79,4 +97,3 @@ ul {
     list-style-type: none;
 }
 </style>
-

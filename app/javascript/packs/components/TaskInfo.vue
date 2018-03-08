@@ -7,7 +7,10 @@ div.mt-1
         dt 期限
         dd {{ localUntil }}
     ul
-        li(v-for="s in mySubmissions") {{ formatJapaneseFromString(s.created_at) }} に提出しています
+      li(v-for="s in mySubmissions") {{ formatJapaneseFromString(s.created_at) }} に提出しています。
+        template(v-if="s.is_passed == true") 合格
+        template(v-if="s.is_passed == false") 不合格
+        template(v-if="s.is_passed == null") 未採点
     b-file(type="file" v-model="file" ref="file")
     b-btn(@click="submit") 提出
 </template>
