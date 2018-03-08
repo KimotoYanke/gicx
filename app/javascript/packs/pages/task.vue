@@ -1,7 +1,7 @@
 <template lang="pug">
 div
     gicx-navbar
-    b-container.mt-5(:class="emergency")
+    b-container.p-5(fluid :class="emergency")
         h1 {{ task.name }}
         h4 {{ subjectName }}
         task-info(:task='task', :subject-name='subjectName' v-if='grade!=0')
