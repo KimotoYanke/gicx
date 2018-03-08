@@ -48,8 +48,8 @@ function setSubjects (state, subjects) {
     })
 }
 
-function setSubmissions (state, {taskId , submissions}){
-    if(!state.submissions){
+function setSubmissions (state, {taskId, submissions}){
+    if (!state.submissions) {
         state.submissions = []
     }
     state.submissions[taskId] = submissions

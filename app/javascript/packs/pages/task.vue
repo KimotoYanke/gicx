@@ -1,7 +1,7 @@
 <template lang="pug">
 div
     gicx-navbar
-    b-container.mt-5
+    b-container.mt-5(:class="emergency")
         h1 {{ task.name }}
         h4 {{ subjectName }}
         task-info(:task='task', :subject-name='subjectName' v-if='grade!=0')
@@ -19,7 +19,6 @@ export default {
         'gicx-navbar': require('../components/GicxNavbar.vue').default,
         'task-info': require('../components/TaskInfo.vue').default,
         'submission-list': require('../components/SubmissionList.vue').default
-
     },
     computed: {
         subjectId () {
@@ -39,6 +38,23 @@ export default {
             }).tasks.find(t => {
                 return t.id === this.taskId
             })
+        },
+        isPassed () {
+            return this.task.submissions.filter(s => s.uid === this.uid).some(s => s['is_passed'] === true)
+        },
+        emergency () {
+            const now = new Date()
+            if (this.isPassed) {
+                return []
+            }
+            if (this.task.until < now) {
+                return ['bg-danger', 'text-white']
+            }
+            const oneDayLaterDate = now.setDate(now.getDate() + 1);
+            if (this.task.until < oneDayLaterDate) {
+                return ['bg-warning', 'text-white']
+            }
+            return []
         },
         ...mapState('user', [
             'subjects',

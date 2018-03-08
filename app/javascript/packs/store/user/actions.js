@@ -13,7 +13,7 @@ export default {
             .catch(res => {})
     },
     signOut ({ commit, dispatch }) {
-        commit('resetToken')
+        commit('resetAll')
         dispatch('checkSignIned')
     },
     getHomeroom ({ commit, dispatch, rootGetters, state }, id) {

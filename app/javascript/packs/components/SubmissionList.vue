@@ -30,7 +30,7 @@ div.mt-1
 import {mapGetters, mapState} from 'vuex'
 import jaLocale from 'date-fns/locale/ja'
 import { format, isPast } from 'date-fns'
-const formatJapanese = d => format(d, 'MM/DD(dd) HH:mm:ss', {locale: jaLocale})
+const formatJapanese = d => format(d, 'YYYY/MM/DD(dd) HH:mm:ss', {locale: jaLocale})
 const formatJapaneseDuration = d => format(d, 'DDD日HH時間mm分ss.SSS秒', {locale: jaLocale})
 
 export default {
@@ -60,7 +60,7 @@ export default {
             if (isPast(this.task.until)) {
                 return `締切より${formatJapaneseDuration(this.now - this.task.until)}経過`
             } else {
-                return `あと${formatJapaneseDuration(this.now - this.task.until)}`
+                return `あと${formatJapaneseDuration(this.task.until - this.now)}`
             }
         },
         ...mapGetters([

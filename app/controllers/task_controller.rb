@@ -12,4 +12,13 @@ class TaskController < ApplicationController
     }
     render json: @nt
   end
+
+  def create
+    @subject = Subject.find(params[:subject_id])
+    @name = params[:name]
+    @until = params[:until]
+    p @until
+    Task.create(subject: @subject, name: @name, until: @until)
+    render json: {}
+  end
 end
