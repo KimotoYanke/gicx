@@ -4,12 +4,12 @@ div
     b-container.p-5(fluid :class="emergency")
         h1 {{ task.name }}
         h4 {{ subjectName }}
-        task-info(:task='task', :subject-name='subjectName' v-if='grade!=0')
-        submission-list(:task='task', :subject-name='subjectName' v-if='grade==0')
+        task-info(:task='task', :subject-name='subjectName' v-if='!isTeacher')
+        submission-list(:task='task', :subject-name='subjectName' v-if='isTeacher')
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapGetters} from 'vuex'
 export default {
     data () {
         return {
@@ -44,21 +44,28 @@ export default {
         },
         emergency () {
             const now = new Date()
+            if (this.isTeacher) {
+                return []
+            }
             if (this.isPassed) {
                 return []
             }
             if (this.task.until < now) {
                 return ['bg-danger', 'text-white']
             }
-            const oneDayLaterDate = now.setDate(now.getDate() + 1);
+            const oneDayLaterDate = now.setDate(now.getDate() + 1)
             if (this.task.until < oneDayLaterDate) {
                 return ['bg-warning', 'text-white']
             }
             return []
         },
         ...mapState('user', [
+            'uid',
             'subjects',
             'grade'
+        ]),
+        ...mapGetters('user', [
+            'isTeacher'
         ])
     }
 }

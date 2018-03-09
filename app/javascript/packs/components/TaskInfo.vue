@@ -11,7 +11,7 @@ div.mt-1
         template(v-if="s.is_passed == true") 合格
         template(v-if="s.is_passed == false") 不合格
         template(v-if="s.is_passed == null") 未採点
-    b-file(type="file" v-model="file" ref="file")
+    b-file.bg-white(type="file" v-model="file" ref="file")
     b-btn(@click="submit") 提出
 </template>
 
@@ -21,7 +21,19 @@ import jaLocale from 'date-fns/locale/ja'
 import { format, isPast, parse } from 'date-fns'
 const formatJapanese = d => format(d, 'YYYY/MM/DD(dd) HH:mm:ss', {locale: jaLocale})
 const formatJapaneseFromString = d => formatJapanese(parse(d))
-const formatJapaneseDuration = d => format(d, 'DDD日HH時間mm分ss.SSS秒', {locale: jaLocale})
+const formatJapaneseDuration = (d, n) => {
+    const diff = Math.abs(d - n)
+
+    const second = ((diff / 1000) % 60).toFixed(3)
+
+    const minute = Math.floor(diff / (1000 * 60)) % 60
+
+    const hour = Math.floor(diff / (1000 * 60 * 60)) % 24
+
+    const day = Math.floor(diff / (1000 * 60 * 60 * 24))
+
+    return `${day}日 ${hour}時間 ${minute}分 ${second}秒`
+}
 
 export default {
     name: 'task-info',
@@ -48,9 +60,9 @@ export default {
         },
         remaining () {
             if (isPast(this.task.until)) {
-                return `締切より${formatJapaneseDuration(this.now - this.task.until)}経過`
+                return `締切より${formatJapaneseDuration(this.task.until, this.now)}経過`
             } else {
-                return `あと${formatJapaneseDuration(this.task.until - this.now)}`
+                return `あと${formatJapaneseDuration(this.task.until, this.now)}`
             }
         },
         mySubmissions () {
