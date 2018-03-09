@@ -8,10 +8,12 @@ div.mt-1
         dd {{ localUntil }}
     ul
         li(v-for="s of submissions[task.id]")
-            div: h2 {{ s.user.number_in_class }}
             div
-                h2(v-if="s.is_confirming") 提出済
-                h2(v-else) 未提出
+              h2 {{ s.user.number_in_class }}
+              b-btn(@click="download(s.id)", size="sm") ダウンロード
+            div
+                h4(v-if="s.is_confirming") 提出済
+                h4(v-else) 未提出
             div
                 template(v-if="s.is_passed == true")
                     h4 合格
@@ -80,6 +82,9 @@ export default {
             }).then(() => {
                 this.$store.dispatch('user/getSubjectsForTeachers')
             })
+        },
+        download (sid) {
+            open('/submission/download?submission_id=' + sid)
         }
     }
 }

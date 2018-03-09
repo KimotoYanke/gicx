@@ -17,7 +17,7 @@ class SubmissionController < ApplicationController
   def create
     decoded_file = params[:decoded_file]
     path ='/tmp/gicx/' + params[:subject].to_s + '/' + params[:task].to_s + '/' + params[:user].to_s
-    filename = params[:filename] || DateTime.now.to_s
+    filename = params[:filename] || DateTime.now.strftime("%Y-%m-%d_%H-%M-%S") + '.' +params[:ext]
     filepath = path + '/' + filename
     FileUtils.mkdir_p(path)
     if !File.directory? path + '/.git'
@@ -41,9 +41,13 @@ class SubmissionController < ApplicationController
   def pass
     @sid = params[:submission_id]
     @is_passed = params[:is_passed]
-    p @sid
     Submission.update(@sid, is_passed: @is_passed)
     render json: {}
   end
 
+  def download
+    @sid = params[:submission_id]
+    @filepath=Submission.find(@sid).path
+    send_file(@filepath)
+  end
 end

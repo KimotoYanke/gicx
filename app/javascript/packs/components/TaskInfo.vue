@@ -79,18 +79,23 @@ export default {
                     r.readAsDataURL(file)
                 })
             }
+            const getExt = filename => {
+                const arr = filename.split(/\./g)
+                return arr[arr.length - 1]
+            }
             readAsBase64(this.file).then(d => {
+                const ext = getExt(this.file.name)
                 return this.axiosInstance.post('/submission/', {
                     'decoded_file': d,
                     subject: this.task.subject_id,
                     task: this.task.id,
-                    user: this.uid
+                    user: this.uid,
+                    ext
                 }).catch(err => console.log(err))
             }).then(() => {
                 this.$store.dispatch('user/getSubjects')
                 this.file = null
             })
-
         },
         formatJapaneseFromString
     }
